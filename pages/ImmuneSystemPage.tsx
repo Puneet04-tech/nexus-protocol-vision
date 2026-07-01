@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Lock, Eye, CheckCircle } from 'lucide-react';
 import ProtocolDiagnostics from '../components/ProtocolDiagnostics';
+import { AdversarialImmuneDemo } from '../demos/interactive/AdversarialImmuneDemo';
 import { useTheme } from '../contexts/ThemeContext';
 import { getThemeClasses } from '../utils/themeUtils';
 
@@ -128,11 +129,24 @@ const ImmuneSystemPage: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Interactive Demo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="space-y-6"
+        >
+          <h2 className="text-3xl font-bold text-white">Interactive Playground</h2>
+          <div className="bg-gray-800/40 border border-gray-700 rounded-2xl overflow-hidden">
+            <AdversarialImmuneDemo />
+          </div>
+        </motion.div>
+
         {/* Real-Time Monitor */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.5 }}
           className="space-y-6"
         >
           <h2 className="text-3xl font-bold text-white">Protocol Diagnostics Center</h2>
