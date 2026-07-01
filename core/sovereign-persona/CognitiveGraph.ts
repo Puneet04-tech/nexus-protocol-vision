@@ -160,8 +160,8 @@ export class CognitiveGraph {
    */
   getTopNodes(n: number = 5): GraphNode[] {
     // Convert the Map to an array, sort descending by confidence, then slice
-    return Array.from(this.nodes.values())
-      .toSorted((a, b) => b.confidence - a.confidence)
+    return [...this.nodes.values()]
+      .sort((a, b) => b.confidence - a.confidence)
       .slice(0, n);
   }
 
