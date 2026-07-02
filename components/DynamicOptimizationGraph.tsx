@@ -11,10 +11,10 @@ interface OptimizationPhase {
 
 const DynamicOptimizationGraph: React.FC = () => {
   const { metrics } = useRealTimeMetrics();
-  const { complexityState } = useGraphComplexity();
+  const { complexity: complexityState } = useGraphComplexity();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   // State for optimization phases
   const [optimizationPhase, setOptimizationPhase] = useState(0);

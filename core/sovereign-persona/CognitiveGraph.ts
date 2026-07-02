@@ -107,6 +107,65 @@ export class CognitiveGraph {
   }
 
   /**
+   * Export the entire cognitive graph as a plain JSON-serialisable object.
+   *
+   * Useful for:
+   *  - Saving/restoring the graph to localStorage or a backend.
+   *  - Feeding the graph into a visualisation library (e.g. D3, Cytoscape).
+   *  - Debugging — paste the output into the browser console to inspect it.
+   *
+   * @returns A snapshot containing all nodes, edges, and the current state.
+   *
+   * @example
+   * ```ts
+   * const graph = new CognitiveGraph('user-123');
+   * const snapshot = graph.exportGraph();
+   * console.log(JSON.stringify(snapshot, null, 2));
+   * ```
+   */
+  exportGraph(): {
+    personaId: string;
+    exportedAt: number;
+    state: KnowledgeState;
+    nodes: GraphNode[];
+    edges: GraphEdge[];
+  } {
+    return {
+      // Who this graph belongs to
+      personaId: this.personaId,
+      // Unix timestamp so you know when the snapshot was taken
+      exportedAt: Date.now(),
+      // High-level summary metrics
+      state: this.getCurrentState(),
+      // All knowledge nodes (concepts the persona knows about)
+      nodes: Array.from(this.nodes.values()),
+      // All connections between those concepts
+      edges: Array.from(this.edges.values()),
+    };
+  }
+
+  /**
+   * Return the top N nodes by confidence score.
+   *
+   * Handy for building dashboards that highlight the user's strongest topics.
+   *
+   * @param n - How many top nodes to return (default: 5)
+   * @returns Nodes sorted from highest to lowest confidence, up to n items.
+   *
+   * @example
+   * ```ts
+   * const topTopics = graph.getTopNodes(3);
+   * topTopics.forEach(node => console.log(node.id, node.confidence));
+   * ```
+   */
+  getTopNodes(n: number = 5): GraphNode[] {
+    // Convert the Map to an array, sort descending by confidence, then slice
+    return [...this.nodes.values()]
+      .sort((a, b) => b.confidence - a.confidence)
+      .slice(0, n);
+  }
+
+  /**
    * Predict learning outcomes
    */
   async predictLearningOutcome(concept: string, timeInvestment: number): Promise<any> {

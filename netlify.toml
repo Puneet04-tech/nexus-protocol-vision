@@ -1,0 +1,18 @@
+# Netlify configuration for Nexus Protocol Vision
+# This is a Vite + React Router SPA. Without this redirect rule, Netlify
+# returns a 404 for any route other than "/" because there is no real file
+# at /immune-system, /carbon-aware, etc. — they are all handled by React
+# Router in the browser after index.html is loaded.
+
+[build]
+  # Vite's default output directory
+  publish = "dist"
+  # Build command
+  command = "npm run build"
+
+[[redirects]]
+  # Catch-all: send every request that doesn't match a real file to index.html
+  # so React Router can handle the URL client-side.
+  from = "/*"
+  to = "/index.html"
+  status = 200
