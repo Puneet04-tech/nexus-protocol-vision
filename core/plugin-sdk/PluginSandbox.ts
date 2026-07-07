@@ -52,7 +52,6 @@ export class PluginSandbox {
         'context',
         ...keys,
         `
-        "use strict";
         try {
           ${sourceCode}
         } catch (err) {
