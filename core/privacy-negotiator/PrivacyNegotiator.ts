@@ -6,6 +6,7 @@
 import { MultiPartyComputation } from './MultiPartyComputation';
 import { ZeroKnowledgeProofs } from './ZeroKnowledgeProofs';
 import { SecureCommunication } from './SecureCommunication';
+import { Monitoring } from '../monitoring/Monitoring';
 
 export interface NegotiationRequest {
   agentId: string;
@@ -120,10 +121,21 @@ export class PrivacyNegotiator {
       // 7. Update trust registry
       this.updateTrustRegistry(request.agentId, negotiationResult.accepted);
       
+      const durationMs = Date.now() - startTime;
+      try {
+        const protocolUsed = strategy.approach === 'secure_mpc' ? 'MPC' : (strategy.approach === 'zero_knowledge' ? 'ZKP' : 'hybrid');
+        Monitoring.getInstance().recordPrivacyNegotiation(
+          request.requestType,
+          protocolUsed,
+          negotiationResult.accepted,
+          durationMs
+        );
+      } catch (e) {}
+
       return {
         ...negotiationResult,
         carbonImpact,
-        executionTime: Date.now() - startTime,
+        executionTime: durationMs,
         trustScore
       };
 

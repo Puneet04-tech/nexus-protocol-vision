@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
+import { Monitoring } from '../core/monitoring/Monitoring';
+
 export type RealTimeMetrics = {
   latencyMs: number;
   energySavingsPercent: number;
@@ -11,34 +13,50 @@ export type RealTimeMetrics = {
 
 const RealTimeContext = createContext<{ metrics: RealTimeMetrics } | undefined>(undefined);
 
-const randomBetween = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-const buildMetrics = (seed?: Partial<RealTimeMetrics>): RealTimeMetrics => {
-  const base: RealTimeMetrics = {
-    latencyMs: 24,
-    energySavingsPercent: 72,
-    activeUsers: 1342,
-    uptimeSeconds: 123456,
-    cpuLoadPercent: 18,
-    memoryUsageMb: 3280,
-  };
-  return { ...base, ...seed };
-};
-
 export const RealTimeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [metrics, setMetrics] = useState<RealTimeMetrics>(() => buildMetrics());
+  const [metrics, setMetrics] = useState<RealTimeMetrics>(() => {
+    try {
+      const mon = Monitoring.getInstance();
+      const sys = mon.systemCollector.collect();
+      const res = mon.resourceMonitor.collect();
+      const carbon = mon.carbonCollector.collect();
+      return {
+        latencyMs: mon.latencyTracker.getAverage() || 24,
+        energySavingsPercent: carbon.energySavingsPercent,
+        activeUsers: res.activeUsers,
+        uptimeSeconds: sys.uptimeSeconds,
+        cpuLoadPercent: sys.cpuLoadPercent,
+        memoryUsageMb: sys.memoryUsageMb,
+      };
+    } catch (e) {
+      return {
+        latencyMs: 24,
+        energySavingsPercent: 72,
+        activeUsers: 1342,
+        uptimeSeconds: 0,
+        cpuLoadPercent: 18,
+        memoryUsageMb: 3280,
+      };
+    }
+  });
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setMetrics(prev => ({
-        latencyMs: Math.max(8, Math.min(120, prev.latencyMs + randomBetween(-5, 5))),
-        energySavingsPercent: Math.max(40, Math.min(95, prev.energySavingsPercent + randomBetween(-2, 2))),
-        activeUsers: Math.max(50, prev.activeUsers + randomBetween(-25, 25)),
-        uptimeSeconds: prev.uptimeSeconds + 5,
-        cpuLoadPercent: Math.max(5, Math.min(90, prev.cpuLoadPercent + randomBetween(-3, 3))),
-        memoryUsageMb: Math.max(512, Math.min(8192, prev.memoryUsageMb + randomBetween(-50, 50))),
-      }));
-    }, 5000);
+      try {
+        const mon = Monitoring.getInstance();
+        const sys = mon.systemCollector.collect();
+        const res = mon.resourceMonitor.collect();
+        const carbon = mon.carbonCollector.collect();
+        setMetrics({
+          latencyMs: Number(mon.latencyTracker.getAverage().toFixed(1)) || 24.0,
+          energySavingsPercent: carbon.energySavingsPercent,
+          activeUsers: res.activeUsers,
+          uptimeSeconds: sys.uptimeSeconds,
+          cpuLoadPercent: sys.cpuLoadPercent,
+          memoryUsageMb: sys.memoryUsageMb,
+        });
+      } catch (e) {}
+    }, 2500); // sync with 2.5s polling loop
 
     return () => window.clearInterval(interval);
   }, []);

@@ -3,6 +3,8 @@
  * Monitors and optimizes carbon footprint of AI computations
  */
 
+import { Monitoring } from '../monitoring/Monitoring';
+
 export interface CarbonFootprint {
   totalEmissions: number; // kg CO2
   computationEmissions: number;
@@ -118,6 +120,15 @@ export class CarbonAwareOptimizer {
       // 9. Trigger alerts if necessary
       this.checkAlerts(budgetStatus);
       
+      try {
+        Monitoring.getInstance().recordCarbonUsage(
+          optimizedFootprint.totalEmissions,
+          energyProfile.totalEnergy,
+          result.reductionPercentage
+        );
+        Monitoring.getInstance().recordLatency('carbon:optimize', Date.now() - startTime, true);
+      } catch (e) {}
+
       return optimizedOperation;
       
     } catch (error) {
