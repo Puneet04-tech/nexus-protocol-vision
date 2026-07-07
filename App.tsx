@@ -24,6 +24,7 @@ import ImmuneSystemPage from './pages/ImmuneSystemPage';
 import LatentSpaceMapping from './pages/LatentSpaceMapping';
 import MonitoringAnalyticsPage from './pages/MonitoringAnalyticsPage';
 import ExplainabilityPage from './pages/ExplainabilityPage';
+import PluginPage from './pages/PluginPage';
 
 // Navigation Menu Component
 const Navigation: React.FC = () => {
@@ -41,6 +42,7 @@ const Navigation: React.FC = () => {
     { name: 'Latent Space', path: '/latent-space' },
     { name: 'Monitoring', path: '/monitoring' },
     { name: 'Explainability', path: '/explainability' },
+    { name: 'Plugins', path: '/plugins' },
   ];
 
   return (
@@ -126,6 +128,7 @@ const App: React.FC = () => {
                       <Route path="/latent-space" element={<LatentSpaceMapping />} />
                       <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
                       <Route path="/explainability" element={<ExplainabilityPage />} />
+                      <Route path="/plugins" element={<PluginPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
