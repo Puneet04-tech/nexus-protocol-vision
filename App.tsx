@@ -23,6 +23,7 @@ import MorphNetPage from './pages/MorphNetPage';
 import ImmuneSystemPage from './pages/ImmuneSystemPage';
 import LatentSpaceMapping from './pages/LatentSpaceMapping';
 import MonitoringAnalyticsPage from './pages/MonitoringAnalyticsPage';
+import ExplainabilityPage from './pages/ExplainabilityPage';
 
 // Navigation Menu Component
 const Navigation: React.FC = () => {
@@ -39,6 +40,7 @@ const Navigation: React.FC = () => {
     { name: 'Immune System', path: '/immune-system' },
     { name: 'Latent Space', path: '/latent-space' },
     { name: 'Monitoring', path: '/monitoring' },
+    { name: 'Explainability', path: '/explainability' },
   ];
 
   return (
@@ -123,6 +125,7 @@ const App: React.FC = () => {
                       <Route path="/immune-system" element={<ImmuneSystemPage />} />
                       <Route path="/latent-space" element={<LatentSpaceMapping />} />
                       <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
+                      <Route path="/explainability" element={<ExplainabilityPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
