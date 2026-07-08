@@ -408,7 +408,20 @@ export class PrivacyNegotiator {
   }
 
   private defineNegotiationCircuit(request: NegotiationRequest, strategy: NegotiationStrategy): any {
-    return {}; // Placeholder
+    return {
+      id: 'negotiation_circuit',
+      gates: [
+        {
+          id: 'gate_1',
+          type: 'compare',
+          inputs: ['sensitivity', 'trust'],
+          output: 'accepted'
+        }
+      ],
+      inputs: ['sensitivity', 'trust'],
+      outputs: ['accepted'],
+      description: 'Negotiation evaluation circuit'
+    };
   }
 
   private generateTerms(strategy: NegotiationStrategy, accepted: boolean): NegotiationTerms {

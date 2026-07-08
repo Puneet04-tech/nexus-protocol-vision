@@ -17,6 +17,9 @@ import {
   LatentSpaceIcon,
   MonitoringIcon,
 } from './components/icons';
+import { Brain } from 'lucide-react';
+
+const ExplainabilityIcon = (props: any) => <Brain className="w-5 h-5 text-cyan-400" {...props} />;
 
 export const NEXUS_PROTOCOL_CONTEXT = `
 The Nexus Protocol: The Detailed Vision The Nexus Protocol is a paradigm shift from "AI as a tool" to "AI as an Infrastructure." At its core, it is a decentralized, agentic operating layer designed to sit between the user and the digital/physical world. Unlike current AI models that reside in centralized clouds and treat every interaction as a generic transaction, Nexus creates a Sovereign Persona—a local-first, high-fidelity digital twin that possesses your "Cognitive Graph." This persona understands your knowledge gaps, your professional context, and your ethical boundaries. It uses Federated Learning to stay smart without ever uploading your raw data to a server. When you interact with the world—whether you’re learning a new skill, managing a project, or navigating a smart city—the Protocol acts as a "Privacy-Preserving Negotiator." It uses Multi-Party Computation (MPC) and Zero-Knowledge Proofs to communicate with other agents (like a City’s Energy Grid or a Company’s Project Manager) to achieve complex goals autonomously. The brilliance of the Nexus Protocol lies in its Recursive Optimization. It doesn't just execute tasks; it manages the cost and impact of those tasks. Through the MorphNet Engine, the software dynamically prunes its own neural architecture, scaling its complexity down for simple tasks to save energy and scaling up only when high-level reasoning is required. This makes the entire system Carbon-Aware and hyper-efficient. On the security front, it operates an Adversarial Immune System that monitors the semantic intent of all incoming data, neutralizing "prompt injections" and "agent hijacking" in real-time. By merging these nine themes, Nexus becomes a "System of Systems" that provides the security of a private vault, the intelligence of a personal tutor, and the efficiency of a global utility, all while remaining entirely open-source and interoperable through a universal Latent Space Mapping protocol.
@@ -92,5 +95,11 @@ export const FEATURES: FeatureData[] = [
     title: "📈 Monitoring & Analytics",
     description: "Comprehensive system monitoring and insights.",
     details: ["Performance metrics tracking", "Usage analytics", "Health monitoring", "Predictive analytics"]
+  },
+  {
+    icon: <ExplainabilityIcon />,
+    title: "🔍 AI Decision Trace",
+    description: "Inspect how AI reached every important decision with full reasoning traces.",
+    details: ["Immutable trace recording", "ASCII reasoning tree visualization", "Dynamic confidence score assessment", "Ethical & privacy compliance reports"]
   }
 ];
