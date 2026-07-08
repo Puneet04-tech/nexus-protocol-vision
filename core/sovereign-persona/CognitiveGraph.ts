@@ -145,6 +145,21 @@ export class CognitiveGraph {
   }
 
   /**
+   * Import graph data from backup, clearing current nodes/edges and rebuilding.
+   */
+  importGraph(data: { nodes: GraphNode[]; edges: GraphEdge[] }): void {
+    this.nodes.clear();
+    this.edges.clear();
+    for (const node of data.nodes) {
+      this.nodes.set(node.id, { ...node });
+    }
+    for (const edge of data.edges) {
+      this.edges.set(edge.id, { ...edge });
+    }
+    this.lastUpdate = Date.now();
+  }
+
+  /**
    * Return the top N nodes by confidence score.
    *
    * Handy for building dashboards that highlight the user's strongest topics.
