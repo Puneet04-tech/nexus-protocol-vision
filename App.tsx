@@ -25,6 +25,7 @@ import LatentSpaceMapping from './pages/LatentSpaceMapping';
 import MonitoringAnalyticsPage from './pages/MonitoringAnalyticsPage';
 import ExplainabilityPage from './pages/ExplainabilityPage';
 import PluginPage from './pages/PluginPage';
+import PlaygroundPage from './pages/PlaygroundPage';
 
 // Navigation Menu Component
 const Navigation: React.FC = () => {
@@ -43,6 +44,7 @@ const Navigation: React.FC = () => {
     { name: 'Monitoring', path: '/monitoring' },
     { name: 'Explainability', path: '/explainability' },
     { name: 'Plugins', path: '/plugins' },
+    { name: 'Playground', path: '/playground' },
   ];
 
   return (
@@ -129,6 +131,7 @@ const App: React.FC = () => {
                       <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
                       <Route path="/explainability" element={<ExplainabilityPage />} />
                       <Route path="/plugins" element={<PluginPage />} />
+                      <Route path="/playground" element={<PlaygroundPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
