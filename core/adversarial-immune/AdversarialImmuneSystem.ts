@@ -3,6 +3,8 @@
  * Monitors semantic intent and protects against prompt injections and agent hijacking
  */
 
+import { Monitoring } from '../monitoring/Monitoring';
+
 export interface ThreatDetection {
   threatId: string;
   threatType: 'prompt_injection' | 'agent_hijacking' | 'data_poisoning' | 'model_extraction' | 'denial_of_service';
@@ -106,6 +108,13 @@ export class AdversarialImmuneSystem {
       // 4. Update security state
       this.updateSecurityState(enhancedDetections);
       
+      try {
+        Monitoring.getInstance().recordAdversarialScan(
+          context?.scanType || 'input_monitoring',
+          enhancedDetections.length
+        );
+      } catch (e) {}
+
       return enhancedDetections;
       
     } catch (error) {
@@ -135,6 +144,10 @@ export class AdversarialImmuneSystem {
         if (strategy.requiresQuarantine) {
           await this.quarantineZone.isolate(threat);
         }
+
+        try {
+          Monitoring.getInstance().threatCollector.recordNeutralization(threat.threatId, response.executionTime);
+        } catch (e) {}
         
         responses.push(response);
         
