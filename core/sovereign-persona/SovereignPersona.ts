@@ -204,6 +204,52 @@ export class SovereignPersona {
     // Find relevant learning resources
     return []; // Placeholder
   }
+
+  /**
+   * Get the active persona profile
+   */
+  public getProfile(): PersonaProfile {
+    return this.profile;
+  }
+
+  /**
+   * Get the cognitive graph instance
+   */
+  public getCognitiveGraph(): CognitiveGraph {
+    return this.cognitiveGraph;
+  }
+
+  /**
+   * Get the local encrypted storage
+   */
+  public getLocalStore(): Map<string, any> {
+    return this.localStore;
+  }
+
+  /**
+   * Import persona state (profile, graph, and local store)
+   */
+  public importPersona(
+    profile: PersonaProfile,
+    graphData?: { nodes: any[]; edges: any[] },
+    localStoreData?: Array<[string, any]>
+  ): void {
+    // Overwrite profile properties
+    this.profile = { ...profile };
+    
+    // Import Cognitive Graph if provided
+    if (graphData) {
+      this.cognitiveGraph.importGraph(graphData);
+    }
+    
+    // Import local store if provided
+    if (localStoreData) {
+      this.localStore.clear();
+      for (const [key, value] of localStoreData) {
+        this.localStore.set(key, value);
+      }
+    }
+  }
 }
 
 export interface UserInteraction {
