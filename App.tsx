@@ -28,6 +28,7 @@ import PluginPage from './pages/PluginPage';
 import PlaygroundPage from './pages/PlaygroundPage';
 import GovernancePage from './pages/GovernancePage';
 import { ConflictResolutionPage } from './pages/ConflictResolutionPage';
+import WorkflowOrchestratorPage from './pages/WorkflowOrchestratorPage';
 
 
 // Navigation Menu Component
@@ -50,6 +51,7 @@ const Navigation: React.FC = () => {
     { name: 'Explainability', path: '/explainability' },
     { name: 'Plugins', path: '/plugins' },
     { name: 'Playground', path: '/playground' },
+    { name: 'Orchestrator', path: '/orchestrator' },
   ];
 
   return (
@@ -139,6 +141,7 @@ const App: React.FC = () => {
                       <Route path="/explainability" element={<ExplainabilityPage />} />
                       <Route path="/plugins" element={<PluginPage />} />
                       <Route path="/playground" element={<PlaygroundPage />} />
+                      <Route path="/orchestrator" element={<WorkflowOrchestratorPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
