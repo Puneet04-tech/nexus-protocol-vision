@@ -59,10 +59,10 @@ const HomePage: React.FC = () => {
               path: '/carbon-aware',
             },
             {
-              icon: '⚡',
-              title: 'More Features',
-              desc: 'Coming Soon',
-              path: '/',
+              icon: '⚖️',
+              title: 'AI Governance',
+              desc: 'Policy & Compliance Center',
+              path: '/governance',
             },
             {
               icon: '📚',

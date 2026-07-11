@@ -26,6 +26,8 @@ import MonitoringAnalyticsPage from './pages/MonitoringAnalyticsPage';
 import ExplainabilityPage from './pages/ExplainabilityPage';
 import PluginPage from './pages/PluginPage';
 import PlaygroundPage from './pages/PlaygroundPage';
+import GovernancePage from './pages/GovernancePage';
+
 
 // Navigation Menu Component
 const Navigation: React.FC = () => {
@@ -42,6 +44,7 @@ const Navigation: React.FC = () => {
     { name: 'Immune System', path: '/immune-system' },
     { name: 'Latent Space', path: '/latent-space' },
     { name: 'Monitoring', path: '/monitoring' },
+    { name: 'AI Governance', path: '/governance' },
     { name: 'Explainability', path: '/explainability' },
     { name: 'Plugins', path: '/plugins' },
     { name: 'Playground', path: '/playground' },
@@ -129,6 +132,7 @@ const App: React.FC = () => {
                       <Route path="/immune-system" element={<ImmuneSystemPage />} />
                       <Route path="/latent-space" element={<LatentSpaceMapping />} />
                       <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
+                      <Route path="/governance" element={<GovernancePage />} />
                       <Route path="/explainability" element={<ExplainabilityPage />} />
                       <Route path="/plugins" element={<PluginPage />} />
                       <Route path="/playground" element={<PlaygroundPage />} />
