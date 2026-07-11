@@ -27,6 +27,7 @@ import ExplainabilityPage from './pages/ExplainabilityPage';
 import PluginPage from './pages/PluginPage';
 import PlaygroundPage from './pages/PlaygroundPage';
 import GovernancePage from './pages/GovernancePage';
+import { ConflictResolutionPage } from './pages/ConflictResolutionPage';
 
 
 // Navigation Menu Component
@@ -45,6 +46,7 @@ const Navigation: React.FC = () => {
     { name: 'Latent Space', path: '/latent-space' },
     { name: 'Monitoring', path: '/monitoring' },
     { name: 'AI Governance', path: '/governance' },
+    { name: 'Conflict Resolver', path: '/conflict-resolution' },
     { name: 'Explainability', path: '/explainability' },
     { name: 'Plugins', path: '/plugins' },
     { name: 'Playground', path: '/playground' },
@@ -133,6 +135,7 @@ const App: React.FC = () => {
                       <Route path="/latent-space" element={<LatentSpaceMapping />} />
                       <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
                       <Route path="/governance" element={<GovernancePage />} />
+                      <Route path="/conflict-resolution" element={<ConflictResolutionPage />} />
                       <Route path="/explainability" element={<ExplainabilityPage />} />
                       <Route path="/plugins" element={<PluginPage />} />
                       <Route path="/playground" element={<PlaygroundPage />} />
