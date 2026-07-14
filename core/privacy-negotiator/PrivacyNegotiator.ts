@@ -7,6 +7,7 @@ import { MultiPartyComputation } from './MultiPartyComputation';
 import { ZeroKnowledgeProofs } from './ZeroKnowledgeProofs';
 import { SecureCommunication } from './SecureCommunication';
 import { Monitoring } from '../monitoring/Monitoring';
+import { TrustEngine } from '../trust/TrustEngine';
 
 export interface NegotiationRequest {
   agentId: string;
@@ -368,7 +369,15 @@ export class PrivacyNegotiator {
   }
 
   private async getReputationScore(agentId: string): Promise<number> {
-    return 0.7; // Placeholder
+    try {
+      const profile = TrustEngine.getInstance().getAgentProfile(agentId);
+      if (profile) {
+        return profile.trustScore / 100.0; // Normalize score to 0.0 - 1.0
+      }
+    } catch (e) {
+      console.error('Failed to fetch reputation from TrustEngine:', e);
+    }
+    return 0.7; // Fallback
   }
 
   private assessDataSensitivity(parameters: any): number {
