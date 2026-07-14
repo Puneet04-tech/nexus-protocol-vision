@@ -41,6 +41,12 @@ const Navigation: React.FC = () => {
     { name: 'Latent Space', path: '/latent-space' },
     { name: 'Adaptive Memory', path: '/adaptive-memory' },
     { name: 'Monitoring', path: '/monitoring' },
+    { name: 'AI Governance', path: '/governance' },
+    { name: 'Conflict Resolver', path: '/conflict-resolution' },
+    { name: 'Explainability', path: '/explainability' },
+    { name: 'Plugins', path: '/plugins' },
+    { name: 'Playground', path: '/playground' },
+    { name: 'Orchestrator', path: '/orchestrator' },
   ];
 
   return (
@@ -126,6 +132,12 @@ const App: React.FC = () => {
                       <Route path="/latent-space" element={<LatentSpaceMapping />} />
                       <Route path="/adaptive-memory" element={<AdaptiveMemoryPage />} />
                       <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
+                      <Route path="/governance" element={<GovernancePage />} />
+                      <Route path="/conflict-resolution" element={<ConflictResolutionPage />} />
+                      <Route path="/explainability" element={<ExplainabilityPage />} />
+                      <Route path="/plugins" element={<PluginPage />} />
+                      <Route path="/playground" element={<PlaygroundPage />} />
+                      <Route path="/orchestrator" element={<WorkflowOrchestratorPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
