@@ -89,6 +89,12 @@ const HomePage: React.FC = () => {
               path: '/benchmark-lab',
             },
             {
+              icon: '🔍',
+              title: 'Memory Search',
+              desc: 'Universal Semantic Explorer',
+              path: '/memory-search',
+            },
+            {
               icon: '📚',
               title: 'Documentation',
               desc: 'Learn More',
