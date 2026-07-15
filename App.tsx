@@ -30,6 +30,7 @@ import GovernancePage from './pages/GovernancePage';
 import { ConflictResolutionPage } from './pages/ConflictResolutionPage';
 import WorkflowOrchestratorPage from './pages/WorkflowOrchestratorPage';
 import TrustDashboardPage from './pages/TrustDashboardPage';
+import AgentMarketplacePage from './pages/AgentMarketplacePage';
 
 
 // Navigation Menu Component
@@ -54,6 +55,7 @@ const Navigation: React.FC = () => {
     { name: 'Playground', path: '/playground' },
     { name: 'Orchestrator', path: '/orchestrator' },
     { name: 'Trust Engine', path: '/trust' },
+    { name: 'Marketplace', path: '/marketplace' },
   ];
 
   return (
@@ -145,6 +147,7 @@ const App: React.FC = () => {
                       <Route path="/playground" element={<PlaygroundPage />} />
                       <Route path="/orchestrator" element={<WorkflowOrchestratorPage />} />
                       <Route path="/trust" element={<TrustDashboardPage />} />
+                      <Route path="/marketplace" element={<AgentMarketplacePage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
