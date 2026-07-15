@@ -77,6 +77,12 @@ const HomePage: React.FC = () => {
               path: '/orchestrator',
             },
             {
+              icon: '🔗',
+              title: 'Collaboration Studio',
+              desc: 'Multi-Agent Mesh Builder',
+              path: '/collaboration-studio',
+            },
+            {
               icon: '📚',
               title: 'Documentation',
               desc: 'Learn More',

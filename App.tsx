@@ -31,6 +31,7 @@ import { ConflictResolutionPage } from './pages/ConflictResolutionPage';
 import WorkflowOrchestratorPage from './pages/WorkflowOrchestratorPage';
 import TrustDashboardPage from './pages/TrustDashboardPage';
 import AgentMarketplacePage from './pages/AgentMarketplacePage';
+import CollaborationStudioPage from './pages/CollaborationStudioPage';
 
 
 // Navigation Menu Component
@@ -56,6 +57,7 @@ const Navigation: React.FC = () => {
     { name: 'Orchestrator', path: '/orchestrator' },
     { name: 'Trust Engine', path: '/trust' },
     { name: 'Marketplace', path: '/marketplace' },
+    { name: 'Collab Studio', path: '/collaboration-studio' },
   ];
 
   return (
@@ -148,6 +150,7 @@ const App: React.FC = () => {
                       <Route path="/orchestrator" element={<WorkflowOrchestratorPage />} />
                       <Route path="/trust" element={<TrustDashboardPage />} />
                       <Route path="/marketplace" element={<AgentMarketplacePage />} />
+                      <Route path="/collaboration-studio" element={<CollaborationStudioPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
