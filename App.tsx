@@ -34,6 +34,7 @@ import AgentMarketplacePage from './pages/AgentMarketplacePage';
 import CollaborationStudioPage from './pages/CollaborationStudioPage';
 import BenchmarkLabPage from './pages/BenchmarkLabPage';
 import MemorySearchPage from './pages/MemorySearchPage';
+import IncidentResponsePage from './pages/IncidentResponsePage';
 
 
 // Navigation Menu Component
@@ -62,6 +63,7 @@ const Navigation: React.FC = () => {
     { name: 'Collab Studio', path: '/collaboration-studio' },
     { name: 'Benchmark Lab', path: '/benchmark-lab' },
     { name: 'Memory Explorer', path: '/memory-search' },
+    { name: 'Incident Center', path: '/incident-response' },
   ];
 
   return (
@@ -157,6 +159,7 @@ const App: React.FC = () => {
                       <Route path="/collaboration-studio" element={<CollaborationStudioPage />} />
                       <Route path="/benchmark-lab" element={<BenchmarkLabPage />} />
                       <Route path="/memory-search" element={<MemorySearchPage />} />
+                      <Route path="/incident-response" element={<IncidentResponsePage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
