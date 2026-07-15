@@ -33,6 +33,7 @@ import TrustDashboardPage from './pages/TrustDashboardPage';
 import AgentMarketplacePage from './pages/AgentMarketplacePage';
 import CollaborationStudioPage from './pages/CollaborationStudioPage';
 import BenchmarkLabPage from './pages/BenchmarkLabPage';
+import MemorySearchPage from './pages/MemorySearchPage';
 
 
 // Navigation Menu Component
@@ -60,6 +61,7 @@ const Navigation: React.FC = () => {
     { name: 'Marketplace', path: '/marketplace' },
     { name: 'Collab Studio', path: '/collaboration-studio' },
     { name: 'Benchmark Lab', path: '/benchmark-lab' },
+    { name: 'Memory Explorer', path: '/memory-search' },
   ];
 
   return (
@@ -154,6 +156,7 @@ const App: React.FC = () => {
                       <Route path="/marketplace" element={<AgentMarketplacePage />} />
                       <Route path="/collaboration-studio" element={<CollaborationStudioPage />} />
                       <Route path="/benchmark-lab" element={<BenchmarkLabPage />} />
+                      <Route path="/memory-search" element={<MemorySearchPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
