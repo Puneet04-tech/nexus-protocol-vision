@@ -83,6 +83,12 @@ const HomePage: React.FC = () => {
               path: '/collaboration-studio',
             },
             {
+              icon: '🔬',
+              title: 'Benchmark Lab',
+              desc: 'AI Evaluation & Audit Lab',
+              path: '/benchmark-lab',
+            },
+            {
               icon: '📚',
               title: 'Documentation',
               desc: 'Learn More',
