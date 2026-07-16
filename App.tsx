@@ -35,6 +35,7 @@ import CollaborationStudioPage from './pages/CollaborationStudioPage';
 import BenchmarkLabPage from './pages/BenchmarkLabPage';
 import MemorySearchPage from './pages/MemorySearchPage';
 import IncidentResponsePage from './pages/IncidentResponsePage';
+import CostResourceOptimizerPage from './pages/CostResourceOptimizerPage';
 
 
 // Navigation Menu Component
@@ -64,6 +65,7 @@ const Navigation: React.FC = () => {
     { name: 'Benchmark Lab', path: '/benchmark-lab' },
     { name: 'Memory Explorer', path: '/memory-search' },
     { name: 'Incident Center', path: '/incident-response' },
+    { name: 'Cost Optimizer', path: '/cost-optimizer' },
   ];
 
   return (
@@ -160,6 +162,7 @@ const App: React.FC = () => {
                       <Route path="/benchmark-lab" element={<BenchmarkLabPage />} />
                       <Route path="/memory-search" element={<MemorySearchPage />} />
                       <Route path="/incident-response" element={<IncidentResponsePage />} />
+                      <Route path="/cost-optimizer" element={<CostResourceOptimizerPage />} />
                     </Routes>
                   </ErrorBoundary>
                 </RealTimeProvider>
