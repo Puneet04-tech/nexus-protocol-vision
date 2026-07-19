@@ -29,6 +29,25 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   ShoppingBag
 };
 
+/**
+ * Inspection panel showing metadata, diagnostic telemetry, workspace links,
+ * and command simulation triggers for the active/selected architecture node.
+ *
+ * @component
+ * @purpose
+ * Displays detailed information about a selected node, providing administrative controls
+ * and sandbox simulators to inspect and execute local-first agent protocols.
+ *
+ * @responsibilities
+ * - Renders a prompt to select a node if none is selected.
+ * - Displays the selected node's core responsibility, role, description, and status indicator.
+ * - Shows telemetry grids corresponding to specific model/module performance scores.
+ * - Hosts redirect triggers mapping to live workspaces (e.g. "/sovereign-persona").
+ * - Hosts buttons to run mock multi-stage protocols targeting compatible architecture components.
+ *
+ * @param {ArchitectureSidebarProps} props - Component properties.
+ * @returns {React.ReactElement} The subsystem inspection panel.
+ */
 export const ArchitectureSidebar: React.FC<ArchitectureSidebarProps> = ({
   selectedNode,
   activeSimulationId,

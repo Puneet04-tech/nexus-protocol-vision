@@ -41,6 +41,25 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   ShoppingBag
 };
 
+/**
+ * Renders the interactive SVG node topology diagram with zoom and pan controls,
+ * glowing layer components, animated data packet flows, and interactive tooltips.
+ *
+ * @component
+ * @purpose
+ * Acts as the primary visual viewport of the 9-layer system design, allowing interactive
+ * exploration of individual nodes and their relationships.
+ *
+ * @responsibilities
+ * - Renders nodes at predefined SVG coordinate points using thematic colors and icons.
+ * - Draws dynamic bezier connections (edges) with glowing statuses and floating animation particles.
+ * - Manages interactive panning/zooming via mouse drag, wheel scrolling, or manual control buttons.
+ * - Supports keyboard layout interaction (tab index, enter/space node inspection triggers).
+ * - Positionally overlay tooltips detailing selected or hovered nodes.
+ *
+ * @param {ArchitectureDiagramProps} props - Component properties.
+ * @returns {React.ReactElement} The visual system topology canvas.
+ */
 export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
   nodes,
   edges,

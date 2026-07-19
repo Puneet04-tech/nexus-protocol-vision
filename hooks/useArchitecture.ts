@@ -2,6 +2,24 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { ArchitectureNode, ArchitectureEdge, SimulationLog, NodeStatus } from '../types/architecture';
 import { INITIAL_NODES, INITIAL_EDGES, SIMULATION_COMMANDS } from '../utils/architectureData';
 
+/**
+ * Custom React hook for managing the state, viewport translation (zoom/pan),
+ * node selections, hovers, and sandboxed simulation logs for the interactive
+ * architecture visualizer.
+ *
+ * @purpose
+ * Encapsulates complex visualization state (positions, dimensions, drag-pan, zoom scale, selection,
+ * simulation status) into a clean, reusable state hook.
+ *
+ * @responsibilities
+ * - Manages nodes and static connections (edges).
+ * - Stores scale and scroll/drag offset coordinates.
+ * - Resolves node details by tracking selected and hovered states.
+ * - Dispatches simulated multi-stage actions (telemetry logs and pulsing nodes) during sandbox scans.
+ * - Restricts viewport zoom from 0.4x to 2.5x bounds.
+ *
+ * @returns {object} The complete architecture visualization state and handlers.
+ */
 export const useArchitecture = () => {
   const [nodes, setNodes] = useState<ArchitectureNode[]>(INITIAL_NODES);
   const [edges] = useState<ArchitectureEdge[]>(INITIAL_EDGES);
