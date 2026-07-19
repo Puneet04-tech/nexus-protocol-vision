@@ -80,6 +80,97 @@ const HomePage: React.FC = () => {
           transition={{ delay: 0.1 }}
         >
           <OverviewCards />
+        {/* Feature Cards */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {[
+            {
+              icon: '🧠',
+              title: 'Sovereign Persona',
+              desc: 'Your Personal AI Twin',
+              path: '/sovereign-persona',
+            },
+            {
+              icon: '📊',
+              title: 'Cognitive Graph',
+              desc: 'Dynamic Knowledge Mapping',
+              path: '/cognitive-graph',
+            },
+            {
+              icon: '🔒',
+              title: 'Privacy Negotiator',
+              desc: 'Cryptographic Communication',
+              path: '/privacy-negotiator',
+            },
+            {
+              icon: '🌱',
+              title: 'Carbon-Aware',
+              desc: 'Sustainable Computing',
+              path: '/carbon-aware',
+            },
+            {
+              icon: '⚖️',
+              title: 'AI Governance',
+              desc: 'Policy & Compliance Center',
+              path: '/governance',
+            },
+            {
+              icon: '🛡️',
+              title: 'Trust & Reputation',
+              desc: 'AI Agent Trust Engine',
+              path: '/trust',
+            },
+            {
+              icon: '⚡',
+              title: 'Workflow Orchestrator',
+              desc: 'Agentic Workflow Manager',
+              path: '/orchestrator',
+            },
+            {
+              icon: '🔗',
+              title: 'Collaboration Studio',
+              desc: 'Multi-Agent Mesh Builder',
+              path: '/collaboration-studio',
+            },
+            {
+              icon: '🔬',
+              title: 'Benchmark Lab',
+              desc: 'AI Evaluation & Audit Lab',
+              path: '/benchmark-lab',
+            },
+            {
+              icon: '🔍',
+              title: 'Memory Search',
+              desc: 'Universal Semantic Explorer',
+              path: '/memory-search',
+            },
+            {
+              icon: '📚',
+              title: 'Documentation',
+              desc: 'Learn More',
+              path: '/',
+            },
+          ].map((feature) => (
+            <Link
+              key={feature.path}
+              to={feature.path}
+              className="group"
+            >
+              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6 hover:border-blue-500 hover:bg-gray-800 transition-all h-full">
+                <div className="text-4xl mb-3">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
+                  {feature.desc}
+                </p>
+              </div>
+            </Link>
+          ))}
         </motion.div>
 
         {/* 3. Main Dashboard Grid Layout */}
