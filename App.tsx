@@ -40,6 +40,7 @@ import MemorySearchPage from './pages/MemorySearchPage';
 import IncidentResponsePage from './pages/IncidentResponsePage';
 import CostResourceOptimizerPage from './pages/CostResourceOptimizerPage';
 import ModelRegistryPage from './pages/ModelRegistryPage';
+import ArchitecturePage from './pages/ArchitecturePage';
 
 
 // Navigation Menu Component
@@ -48,6 +49,7 @@ const Navigation: React.FC = () => {
 
   const menuItems = [
     { name: 'Home', path: '/' },
+    { name: 'System Architecture', path: '/architecture' },
     { name: 'Sovereign Persona', path: '/sovereign-persona' },
     { name: 'Cognitive Graph', path: '/cognitive-graph' },
     { name: 'Privacy Negotiator', path: '/privacy-negotiator' },
@@ -161,6 +163,7 @@ const App: React.FC = () => {
                       <Navigation />
                       <Routes>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/architecture" element={<ArchitecturePage />} />
                         <Route path="/sovereign-persona" element={<SovereignPersonaPage />} />
                         <Route path="/cognitive-graph" element={<CognitiveGraphPage />} />
                         <Route path="/privacy-negotiator" element={<PrivacyNegotiatorPage />} />
