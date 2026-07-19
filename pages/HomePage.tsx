@@ -35,6 +35,12 @@ const HomePage: React.FC = () => {
         >
           {[
             {
+              icon: '🌐',
+              title: 'System Architecture',
+              desc: 'Interactive 9-Layer Map',
+              path: '/architecture',
+            },
+            {
               icon: '🧠',
               title: 'Sovereign Persona',
               desc: 'Your Personal AI Twin',
