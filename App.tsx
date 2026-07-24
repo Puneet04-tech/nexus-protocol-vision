@@ -10,6 +10,9 @@ import { ErrorStateProvider } from './contexts/ErrorStateContext';
 import { DiagnosticLogProvider } from './contexts/DiagnosticLogContext';
 import { RealTimeProvider } from './contexts/RealTimeContext';
 import ErrorBoundary from './components/ErrorBoundary';
+import { SearchProvider } from './contexts/SearchContext';
+import SearchBar from './components/search/SearchBar';
+import CommandPalette from './components/search/CommandPalette';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -36,6 +39,7 @@ import MemorySearchPage from './pages/MemorySearchPage';
 import IncidentResponsePage from './pages/IncidentResponsePage';
 import CostResourceOptimizerPage from './pages/CostResourceOptimizerPage';
 import ModelRegistryPage from './pages/ModelRegistryPage';
+import ArchitecturePage from './pages/ArchitecturePage';
 
 
 // Navigation Menu Component
@@ -44,6 +48,7 @@ const Navigation: React.FC = () => {
 
   const menuItems = [
     { name: 'Home', path: '/' },
+    { name: 'System Architecture', path: '/architecture' },
     { name: 'Sovereign Persona', path: '/sovereign-persona' },
     { name: 'Cognitive Graph', path: '/cognitive-graph' },
     { name: 'Privacy Negotiator', path: '/privacy-negotiator' },
@@ -73,19 +78,29 @@ const Navigation: React.FC = () => {
     <nav className="bg-gray-900 border-b border-gray-700 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg group-hover:shadow-lg transition-all" />
-            <span className="text-white font-bold text-lg hidden sm:inline">Nexus Protocol</span>
-          </Link>
+          <div className="flex items-center space-x-4 flex-shrink-0">
+            {/* Logo */}
+            <Link to="/" className="flex items-center space-x-2 group flex-shrink-0">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg group-hover:shadow-lg transition-all" />
+              <span className="text-white font-bold text-lg hidden sm:inline">Nexus Protocol</span>
+            </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1">
+            {/* Desktop/Tablet Global Search Entry */}
+            <div className="hidden sm:block max-w-[150px] w-full flex-shrink-0">
+              <SearchBar />
+            </div>
+          </div>
+
+          {/* Desktop Menu - Scrollable horizontally to prevent overlap */}
+          <div 
+            className="hidden md:flex items-center space-x-1 overflow-x-auto flex-1 ml-4 mr-2 py-1.5 whitespace-nowrap"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-700 transition-colors"
+                className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-700 transition-colors flex-shrink-0"
               >
                 {item.name}
               </Link>
@@ -94,7 +109,7 @@ const Navigation: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-300 hover:text-white"
+            className="md:hidden text-gray-300 hover:text-white ml-4 flex-shrink-0"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -108,8 +123,12 @@ const Navigation: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-gray-800 space-y-1 pb-3"
+              className="md:hidden bg-gray-800 space-y-1 pb-3 px-2"
             >
+              {/* Mobile Search Entry */}
+              <div className="py-2 px-1">
+                <SearchBar />
+              </div>
               {menuItems.map((item) => (
                 <Link
                   key={item.path}
@@ -142,6 +161,12 @@ const App: React.FC = () => {
                     <DashboardLayout>
                       <Routes>
                         <Route path="/" element={<HomePage />} />
+                  <SearchProvider>
+                    <ErrorBoundary>
+                      <Navigation />
+                      <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/architecture" element={<ArchitecturePage />} />
                         <Route path="/sovereign-persona" element={<SovereignPersonaPage />} />
                         <Route path="/cognitive-graph" element={<CognitiveGraphPage />} />
                         <Route path="/privacy-negotiator" element={<PrivacyNegotiatorPage />} />
@@ -187,6 +212,18 @@ const App: React.FC = () => {
                       <Route path="/model-registry" element={<ModelRegistryPage />} />
                     </Routes>
                   </ErrorBoundary>
+                        <Route path="/trust" element={<TrustDashboardPage />} />
+                        <Route path="/marketplace" element={<AgentMarketplacePage />} />
+                        <Route path="/collaboration-studio" element={<CollaborationStudioPage />} />
+                        <Route path="/benchmark-lab" element={<BenchmarkLabPage />} />
+                        <Route path="/memory-search" element={<MemorySearchPage />} />
+                        <Route path="/incident-response" element={<IncidentResponsePage />} />
+                        <Route path="/cost-optimizer" element={<CostResourceOptimizerPage />} />
+                        <Route path="/model-registry" element={<ModelRegistryPage />} />
+                      </Routes>
+                      <CommandPalette />
+                    </ErrorBoundary>
+                  </SearchProvider>
                 </RealTimeProvider>
               </DiagnosticLogProvider>
             </ErrorStateProvider>
