@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DashboardLayout from './components/dashboard/DashboardLayout';
 
 // Contexts
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -158,6 +157,10 @@ const App: React.FC = () => {
             <ErrorStateProvider>
               <DiagnosticLogProvider>
                 <RealTimeProvider>
+                  <ErrorBoundary>
+                    <DashboardLayout>
+                      <Routes>
+                        <Route path="/" element={<HomePage />} />
                   <SearchProvider>
                     <ErrorBoundary>
                       <Navigation />
@@ -179,6 +182,36 @@ const App: React.FC = () => {
                         <Route path="/plugins" element={<PluginPage />} />
                         <Route path="/playground" element={<PlaygroundPage />} />
                         <Route path="/orchestrator" element={<WorkflowOrchestratorPage />} />
+                      </Routes>
+                    </DashboardLayout>
+                    <Navigation />
+                    <Routes>
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/sovereign-persona" element={<SovereignPersonaPage />} />
+                      <Route path="/cognitive-graph" element={<CognitiveGraphPage />} />
+                      <Route path="/privacy-negotiator" element={<PrivacyNegotiatorPage />} />
+                      <Route path="/carbon-aware" element={<CarbonAwarePage />} />
+                      <Route path="/federated-learning" element={<FederatedLearningPage />} />
+                      <Route path="/morphnet" element={<MorphNetPage />} />
+                      <Route path="/immune-system" element={<ImmuneSystemPage />} />
+                      <Route path="/latent-space" element={<LatentSpaceMapping />} />
+                      <Route path="/monitoring" element={<MonitoringAnalyticsPage />} />
+                      <Route path="/governance" element={<GovernancePage />} />
+                      <Route path="/conflict-resolution" element={<ConflictResolutionPage />} />
+                      <Route path="/explainability" element={<ExplainabilityPage />} />
+                      <Route path="/plugins" element={<PluginPage />} />
+                      <Route path="/playground" element={<PlaygroundPage />} />
+                      <Route path="/orchestrator" element={<WorkflowOrchestratorPage />} />
+                      <Route path="/trust" element={<TrustDashboardPage />} />
+                      <Route path="/marketplace" element={<AgentMarketplacePage />} />
+                      <Route path="/collaboration-studio" element={<CollaborationStudioPage />} />
+                      <Route path="/benchmark-lab" element={<BenchmarkLabPage />} />
+                      <Route path="/memory-search" element={<MemorySearchPage />} />
+                      <Route path="/incident-response" element={<IncidentResponsePage />} />
+                      <Route path="/cost-optimizer" element={<CostResourceOptimizerPage />} />
+                      <Route path="/model-registry" element={<ModelRegistryPage />} />
+                    </Routes>
+                  </ErrorBoundary>
                         <Route path="/trust" element={<TrustDashboardPage />} />
                         <Route path="/marketplace" element={<AgentMarketplacePage />} />
                         <Route path="/collaboration-studio" element={<CollaborationStudioPage />} />
